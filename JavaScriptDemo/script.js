@@ -1,5 +1,11 @@
-console.log("I made it!");
-let animal1 = "dog";
-let animal2 = "cat";
-let animal3 = `${animal1} ${animal2}`;
-console.log(animal3);
+var age = 25;
+var name = 'Malcolm';
+var isStudent = true;
+
+age = 30;
+
+var firstName = 'Malcolm';
+var lastName = 'Bowers';
+var fullName = `${firstName} ${lastName}`;
+
+console.log(fullName);
