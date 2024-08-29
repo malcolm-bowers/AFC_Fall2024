@@ -70,7 +70,7 @@ if (age > 18) {
 if (isStudent == true) {
     console.log("Student");
 } else {
-    "Not a student"
+    console.log("Not a student");
 }
 
 // 18. Write an if-else if-else statement that checks if `age` is less than 13, log "Child", if age is between 13 and 19 log "Teenager", otherwise log "Adult"
