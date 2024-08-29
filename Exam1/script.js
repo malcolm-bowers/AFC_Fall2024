@@ -67,7 +67,7 @@ if (age > 18) {
 }
 
 // 17. Write an if-else statement that checks if `isStudent` is true, and if so, log "Student" to the console, otherwise log "Not a student"
-if (isStudent == true) {
+if (isStudent) {
     console.log("Student");
 } else {
     console.log("Not a student");
