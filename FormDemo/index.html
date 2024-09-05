@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <form action="" method="get">
+            <label>First Name:
+                <input type="text" name="fname" id="fname" required maxlength="55" minlength="3" placeholder="Please enter your first name">
+            </label>
+            <br>
+            <label>Age:
+                <input type="number" name="age" id="" min="21">
+            </label>
+            <br>
+            <label>Password:
+                <input type="password" name="pw" id="pw">
+            </label>
+            <br>
+            <!-- <label>Email:
+                <input type="email" name="emailAddress" id="email">
+            </label> -->
+            <br>
+            <label>
+                Are you married?
+                <input type="radio" name="isMarried" id="" value="yes">Yes
+                <input type="radio" name="isMarried" id=""  value="no" checked>No
+                <input type="radio" name="isMarried" id="" value="maybe">It's Complicated
+            </label>
+            <br>
+            <label>
+                Are you alive?
+                <input type="radio" name="isAlive" id="" value="yes">Yes
+                <input type="radio" name="isAlive" id="" value="no">No
+                <input type="radio" name="isAlive" id="" value="dead-inside" checked>It's Complicated
+            </label>
+            <br>
+            <label>Favorite Colors:
+                Blue<input type="checkbox" name="color1" id="" value="blue">                
+                <input type="checkbox" name="color2" id="" value="red">Red                
+                <input type="checkbox" name="color3" id="" value="yellow"> Yellow            
+            </label>
+            <br>
+            <label for="">Please tell us more about yourself:
+                <br>
+                <textarea name="other_description" id="" cols="100" rows="3">
+                </textarea>
+            </label>
+            <br>
+            <label>State:
+                <select name="state" id="">
+                    <option value="tx">TX</option>
+                    <option value="ca">CA</option>
+                    <option value="wa">WA</option>
+                </select>
+            </label> 
+            <br>
+            <button type="submit">
+                Submit
+            </button>
+            <br>
+        </form>
+        <script src="" async defer></script>
+    </body>
+</html>
