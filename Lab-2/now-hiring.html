@@ -6,10 +6,113 @@
         <title>Now Hiring!</title>
         <meta name="hiring" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="icon" href="assets/favicon.png" type="image/png">
     </head>
     <body>
-        
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="now-hiring.html">Now Hiring</a>
+        <br><br><br>
+        <form action="" method="get">
+            <label>First Name:
+                <input type="text" 
+                name="fname" 
+                required maxlength="20" 
+                minlength="1">
+            </label>
+            <br>
+            <label>Last Name:
+                <input type="text" 
+                name="lname" 
+                maxlength="20" 
+                minlength="1">
+            </label>
+            <br>
+            <label>Address 1:
+                <input type="text" 
+                name="address1" 
+                required>
+            </label>
+            <br>
+            <label>Address 2:
+                <input type="text" 
+                name="address2">
+            </label>
+            <br>
+            <label>City:
+                <input type="text" 
+                name="city" 
+                required maxlength="30">
+             </label>
+             <label>State:
+                <select name="state">
+                    <option value="ny">NY</option>
+                    <option value="tx">TX</option>
+                    <option value="hi">HI</option>
+                    <option value="nc">NC</option>
+                    <option value="sc">SC</option>
+                </select>
+             </label>
+             <br>
+             <label>Age:
+                <input type="number" name="age" min="21" max="99" required>
+             </label>
+             <br>
+             <label>Phone Number:
+                <input type="tel" 
+                name="phone" 
+                placeholder="123-456-7890" 
+                pattern="\d{3}-\d{3}-\d{4}"
+                title="Please use the format: 999-999-9999">
+             </label>
+             <br>
+             <label>Email
+                <input type="email" 
+                name="email" 
+                required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                title="Please use the appropriate email format: hello42@world.com">
+             </label>
+             <br>
+             <label>Password:
+                <input type="password" 
+                name="pw" 
+                required min="8" 
+                max="12"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,12}$"
+                title="Password must be at least 8 characters long, 
+                no more than 12, 
+                include at least one number, 
+                one special character,
+                one lowercase, 
+                and one uppercase (!@#$%^&*)">
+             </label>
+             <br>
+             <label>
+                Are you married?
+                <input type="radio" name="isMarried" value="yes">Married
+                <input type="radio" name="isMarried" value="no" checked>Single
+                <input type="radio" name="isMarried" value="maybe">It's Complicated
+            </label>
+            <br>
+            <label>Favorite Colors:
+                <input type="checkbox" name="color1" value="blue">Blue               
+                <input type="checkbox" name="color2" value="red">Red                
+                <input type="checkbox" name="color3" value="yellow">Yellow            
+                <input type="checkbox" name="color4" value="green">Green          
+                <input type="checkbox" name="color5" value="purple">Purple           
+            </label>
+            <br><br>
+            <label for="">Please tell us more about yourself (300 char max):
+                <br>
+                <textarea name="other_description" 
+                cols="30" 
+                rows="4" 
+                maxlength="300"></textarea>
+            </label>
+             <br><br>
+             <button type="submit">Submit</button>
+             <button type="reset">Reset</button>
+        </form>
         <script src="" async defer></script>
     </body>
 </html>
