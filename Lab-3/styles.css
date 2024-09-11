@@ -105,6 +105,7 @@ span {
 }
 
 .container {
+    /* 24. Use flexbox to center align items inside a container */
     display: flex;
     align-items: center;
     justify-content: center;
