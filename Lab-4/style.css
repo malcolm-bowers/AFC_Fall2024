@@ -1,0 +1,171 @@
+body {
+  background-image: url("assets/bgImage.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  height: 100vh;
+}
+
+.navbar {
+  font-family: "Satisfy", cursive;
+  font-size: larger;
+  border-bottom: 1px solid gray;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Satisfy", cursive;
+  font-weight: 400;
+  font-size: xxx-large;
+}
+
+.menu-button {
+  padding-inline: 30px;
+}
+
+#menu-card {
+  display: flex;
+  width: 80vw;
+  max-width: 800px;
+  margin: 20px auto;
+  height: 40vh; /* Set a fixed height for the card */
+}
+
+#menu-card-image {
+  width: 40%; /* Set width of image */
+  height: 100%; /* Make the image take full card height */
+  border-radius: 30px;
+  border: 5px solid #915f77fb;
+  object-fit: cover; /* Ensure the image covers the container without stretching */
+}
+
+#menu-card-text {
+  width: 60%;
+  height: 100%; /* Make text container take full card height */
+  padding: 10px;
+  border: 5px solid #915f77fb;
+  background-color: #c45ee793;
+  border-radius: 30px;
+  overflow: hidden; /* Hide overflow if text exceeds the container height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute content evenly */
+}
+
+#menu-card-title {
+  padding-bottom: 10px;
+}
+
+#menu-card-description {
+  padding-bottom: 10px;
+  font-style: italic;
+  overflow: hidden; /* Ensure long text doesn't affect layout */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+#menu-card-price {
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+.horizontal-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+}
+#hiring-form {
+  background-color: #c37bb3cc;
+  padding: 20px;
+  margin-top: 20px;
+  max-width: 80vw; 
+  max-height: 80%; 
+  overflow-y: auto;
+  border: 1px solid rgb(99, 29, 93);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+#icon-container {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  opacity: 80%;
+}
+
+.icon {
+  position: relative;
+  width: 500px;
+  height: auto;
+}
+
+/* Popped icon animation */
+.popped-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: pop-out 0.8s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes pop-out {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5)
+      translate(calc(var(--x) * 100px), calc(var(--y) * 100px));
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  #menu-card {
+    flex-direction: column; /* Stack image and text vertically */
+    width: 90vw;
+    height: 60vh;
+  }
+
+  #menu-card-image {
+    width: 100%; /* Image takes full width */
+    height: 40%; /* Image takes up half the card's height */
+    border-radius: 15px; /* Adjust border radius for small screens */
+  }
+
+  #menu-card-text {
+    width: 100%; /* Text takes full width */
+    height: 60%; /* Text takes up half the card's height */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #menu-card-description {
+    overflow-y: auto; /* Allow scrolling for long descriptions */
+    font-size: small; /* Reduce font size on mobile */
+  }
+
+  #menu-card-title {
+    font-size: larger; /* Adjust title size */
+  }
+
+  #menu-card-price {
+    font-size: large; /* Adjust price text size */
+  }
+
+  h1 {
+    font-size: xx-large; /* Reduce heading size for mobile */
+  }
+
+  .navbar {
+    font-size: medium; /* Adjust font size of navbar for mobile */
+  }
+}
