@@ -13,16 +13,17 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid2';
 
+
 function App() {
-  // APIKEY: 17c823343d16453575ac30e2d90b19c4
   const [movies, setMovies] = useState([])
 
+  const {VITE_TMDB_API_TOKEN} = process.env;
   const options = {
     method: 'GET',
     url: 'https://api.themoviedb.org/3/movie/now_playing',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOWZjMTFiOGE2NTk1MGE2NzAyODE3YzgwZDNmNjQ2MSIsIm5iZiI6MTcyNzg4NDE2Ni4wNDc1MDcsInN1YiI6IjY2ZmQ1NmZkNmMzNjU5ODVjOGYyNGFkYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9RvVOIVcsA1e5I-Exd3hgTSGTIYFq7EwxI-21Nf52is'
+      Authorization: `Bearer ${VITE_TMDB_API_TOKEN}`
     }
   };
 
