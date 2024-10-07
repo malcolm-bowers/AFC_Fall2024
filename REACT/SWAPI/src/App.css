@@ -4,8 +4,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
   align-items: start;
   display: flex;
   justify-content: center;
@@ -16,10 +16,17 @@ body {
 }
 
 h1 {
-  color: red;
   font-size: 80px;
   padding: 0;
   margin-top: 25px;
   margin-bottom: 0;
+  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
 
+#showButton {
+  background-color: rgb(123, 0, 123); 
+}
+
+#resetButton {
+  background-color: red;
+}
