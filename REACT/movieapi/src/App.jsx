@@ -13,7 +13,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid2';
 
-
 function App() {
   const [movies, setMovies] = useState([])
 
