@@ -1,22 +1,27 @@
 import * as React from 'react';
+import { useState } from 'react';
 import {
     alpha,
-    styled,
     AppBar,
     Box,
-    Toolbar,
+    Button,
     IconButton,
-    Typography,
     InputBase,
     Menu,
     MenuItem,
-    Button
+    styled,
+    Toolbar,
+    Typography
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const pages = [{ name: 'Now Playing', path: '/' }];
+const pages = [
+    { name: 'Home', path: '/' },
+    { name: 'Now Playing', path: '/results' },
+];
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -59,9 +64,39 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function NavBar() {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+export default function NavBar({ onSearchResults }) {
+    const navigate = useNavigate();
+    const [searchData, setSearchData] = useState('');
+    const [anchorElNav, setAnchorElNav] = useState(null);
 
+    const { VITE_TMDB_API_TOKEN } = process.env;
+
+    // Handle search submit when user presses Enter
+    const handleKeyDown = async (event) => {
+        if (event.key === 'Enter') {
+            try {
+                const response = await axios.get(`https://api.themoviedb.org/3/search/movie`, {
+                    params: {
+                        query: searchData,
+                        include_adult: 'false',
+                        language: 'en-US',
+                        page: 1
+                    },
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${VITE_TMDB_API_TOKEN}`
+                    }
+                });
+                onSearchResults(response.data.results);
+                setSearchData(''); // Clear search input
+            } catch (err) {
+                console.log("Search error: ", err);
+                navigate('../Error'); // Navigate to error page
+            }
+        }
+    };
+
+    // Handle mobile navigation menu open/close
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -86,10 +121,12 @@ export default function NavBar() {
                     >
                         Powered by TMDB
                     </Typography>
+
+                    {/* Mobile Menu */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
-                            aria-label="account of current user"
+                            aria-label="open navigation menu"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
@@ -115,30 +152,30 @@ export default function NavBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                                    <Typography sx={{ textAlign: 'center' }}>
-                                        <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            {page.name}
-                                        </Link>
-                                    </Typography>
+                                    <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        {page.name}
+                                    </Link>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <Box>
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {pages.map((page) => (
-                                <Button
-                                    key={page.name}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                    component={Link}  // Use Link as a component for Button
-                                    to={page.path}  // Set the path where it should navigate
-                                >
-                                    {page.name}
-                                </Button>
-                            ))}
-                        </Box>
+
+                    {/* Desktop Menu */}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        {pages.map((page) => (
+                            <Button
+                                key={page.name}
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                component={Link} // Use Link as component for Button
+                                to={page.path} // Set path for navigation
+                            >
+                                {page.name}
+                            </Button>
+                        ))}
                     </Box>
+
+                    {/* Search Bar */}
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -146,6 +183,9 @@ export default function NavBar() {
                         <StyledInputBase
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
+                            value={searchData}
+                            onChange={(e) => setSearchData(e.target.value)}
+                            onKeyDown={handleKeyDown}
                         />
                     </Search>
                 </Toolbar>
