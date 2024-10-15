@@ -4,11 +4,12 @@ import {Card, CardContent, CardMedia, Typography, CardActionArea} from '@mui/mat
 export default function MovieCard({movie}) {
     const baseImgPath = `https://image.tmdb.org/t/p/w300${movie.poster_path}`
     return (
-        <Card sx={{ maxWidth: 345, height: "500px", overflow: "scroll" }}>
+        <Card sx={{ maxWidth: "400px", height: "650px", overflow: "scroll" }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height=""
+                    height="100%"
+                    width="100%"
                     image={baseImgPath}
                     alt={movie.title}
                 />
