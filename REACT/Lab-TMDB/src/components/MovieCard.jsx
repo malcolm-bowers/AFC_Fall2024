@@ -1,61 +1,66 @@
 import * as React from 'react';
-import {Card, CardContent, CardMedia, Typography, CardActionArea, Rating, Box} from '@mui/material';
+import {Card, CardContent, CardMedia, Rating, Typography} from '@mui/material';
+import ThemedPaper from "./ui/Theme.jsx";
 
 export default function MovieCard({movie}) {
-    const defaultImgPath = `src/assets/no-signal.webp`;
-    const baseImgPath = `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+    const defaultImgPath = 'src/assets/no-signal.webp';
+    const baseImgPath = `https://image.tmdb.org/t/p/w300${movie.poster_path}`;
 
     const [imgSrc, setImgSrc] = React.useState(baseImgPath);
 
     const handleImgError = () => {
-        setImgSrc(defaultImgPath)
-    }
+        setImgSrc(defaultImgPath); // Use default image if loading fails
+    };
 
     return (
-        <Card sx={{
-            maxWidth: "400px",
-            height: "600px",
-            display: 'flex',
-            flexDirection: 'column',
-            border: `3px solid red`,
-            borderRadius: '15px',
-        }}>
-            <CardActionArea sx={{
-                height: "100%",
-                m: 0,
-                p: 0,
-                flex: 1,
+        <Card
+            sx={{
+                width: 300, // Fixed width for consistency
+                height: 700, // Fixed height for all cards
                 display: 'flex',
                 flexDirection: 'column',
-            }}>
-                <CardMedia
-                    component="img"
-                    image={imgSrc}
-                    alt={movie.title}
-                    onError={handleImgError}
+                border: '3px solid red',
+                borderRadius: '15px',
+                overflow: 'hidden',
+                boxShadow: '0px 4px 10px 2px rgba(255, 0, 0, 0.8)',
+            }}
+        >
+            <CardMedia
+                component="img"
+                image={imgSrc}
+                alt={movie.title}
+                onError={handleImgError}
+                sx={{
+                    width: '100%',
+                    height: 500,
+                    objectPosition: 'center top',
+                }}
+            />
+            <ThemedPaper>
+                <CardContent
                     sx={{
-                        width: '100%',
-                        height: '400px',
-                        objectFit: 'cover',
-                        margin: 0,
-                        padding: 0
+                        flex: 1,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        overflowY: 'auto',
+                        maxHeight: 200,
                     }}
-                />
-                <CardContent sx={{
-                    flex: '1 1 auto',
-                    height: "100px",
-                    overflowY: 'auto',
-                    padding: '16px'
-                }}>
+                >
                     <Typography gutterBottom variant="h5" component="div">
                         {movie.title}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        {movie.overview}
+                    <Typography variant="body2" sx={{color: 'text.secondary', marginBottom: '0.5rem'}}>
+                        {movie.overview || 'No description available.'}
                     </Typography>
-                    <Rating name="read-only" value={movie.vote_average/2} precision={0.1} readOnly />
+                    <Rating
+                        name="read-only"
+                        value={movie.vote_average / 2}
+                        precision={0.1}
+                        readOnly
+                    />
                 </CardContent>
-            </CardActionArea>
+            </ThemedPaper>
         </Card>
-    );
+    )
+        ;
 }
