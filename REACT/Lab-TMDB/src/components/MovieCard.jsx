@@ -34,7 +34,7 @@ export default function MovieCard({movie}) {
                 />
                 <CardContent sx={{
                     flex: '1 1 auto',
-                    height: "150px",
+                    height: "100px",
                     overflowY: 'auto',
                     padding: '16px'
                 }}>

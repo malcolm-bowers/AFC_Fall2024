@@ -70,7 +70,7 @@ export default function Results() {
             ) : (
                 <Grid container spacing={3} justifyContent="center" alignItems="center">
                     {moviesToShow.slice(0, 12).map((movie, index) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
+                        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                             <Item>
                                 <MovieCard movie={movie} />
                             </Item>
