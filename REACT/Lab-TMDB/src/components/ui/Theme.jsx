@@ -30,8 +30,6 @@ export default function ThemedPaper({ children }) {
                     backgroundColor: 'background.paper',
                     color: 'text.primary',
                     borderRadius: '0px',
-                    height: '100%',
-                    width: '100%',
                 }}
             >
                 {children}

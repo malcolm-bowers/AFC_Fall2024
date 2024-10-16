@@ -32,8 +32,9 @@ export default function MovieCard({movie}) {
                 onError={handleImgError}
                 sx={{
                     width: '100%',
-                    height: 500,
-                    objectPosition: 'center top',
+                    height: '500px',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
                 }}
             />
             <ThemedPaper>
@@ -43,7 +44,7 @@ export default function MovieCard({movie}) {
                         display: 'flex',
                         flexDirection: 'column',
                         overflowY: 'auto',
-                        maxHeight: 200,
+                        height: 200,
                     }}
                 >
                     <Typography gutterBottom variant="h5" component="div">
