@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import {useState} from 'react';
 import {
     alpha,
     AppBar,
@@ -15,15 +15,14 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import {Link, useNavigate} from 'react-router-dom';
 
 const pages = [
-    { name: 'Home', path: '/' },
-    { name: 'Now Playing', path: '/results' },
+    {name: 'Home', path: '/'},
+    {name: 'Now Playing', path: '/results'},
 ];
 
-const Search = styled('div')(({ theme }) => ({
+const Search = styled('div')(({theme}) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -38,7 +37,7 @@ const Search = styled('div')(({ theme }) => ({
     },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({theme}) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
@@ -48,7 +47,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(({theme}) => ({
     color: 'inherit',
     width: '100%',
     '& .MuiInputBase-input': {
@@ -64,35 +63,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function NavBar({ onSearchResults }) {
+export default function NavBar() {
     const navigate = useNavigate();
     const [searchData, setSearchData] = useState('');
     const [anchorElNav, setAnchorElNav] = useState(null);
 
-    const { VITE_TMDB_API_TOKEN } = process.env;
+    const {VITE_TMDB_API_TOKEN} = process.env;
 
     // Handle search submit when user presses Enter
     const handleKeyDown = async (event) => {
         if (event.key === 'Enter') {
-            try {
-                const response = await axios.get(`https://api.themoviedb.org/3/search/movie`, {
-                    params: {
-                        query: searchData,
-                        include_adult: 'false',
-                        language: 'en-US',
-                        page: 1
-                    },
-                    headers: {
-                        accept: 'application/json',
-                        Authorization: `Bearer ${VITE_TMDB_API_TOKEN}`
-                    }
-                });
-                onSearchResults(response.data.results);
-                setSearchData(''); // Clear search input
-            } catch (err) {
-                console.log("Search error: ", err);
-                navigate('../Error'); // Navigate to error page
-            }
+            navigate('/results', {state: {searchData}, replace: true});
+            setSearchData(''); // Clear search input
         }
     };
 
@@ -105,8 +87,8 @@ export default function NavBar({ onSearchResults }) {
     };
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" sx={{ backgroundColor: 'black', color: 'red', borderRadius: 3 }}>
+        <Box sx={{flexGrow: 1}}>
+            <AppBar position="fixed" sx={{backgroundColor: 'black', color: 'red'}}>
                 <Toolbar>
                     <Typography
                         variant="h6"
@@ -114,7 +96,7 @@ export default function NavBar({ onSearchResults }) {
                         component="a"
                         sx={{
                             flexGrow: 1,
-                            display: { xs: 'none', sm: 'block' },
+                            display: {xs: 'none', sm: 'block'},
                             color: 'inherit',
                             fontWeight: 700,
                         }}
@@ -123,7 +105,7 @@ export default function NavBar({ onSearchResults }) {
                     </Typography>
 
                     {/* Mobile Menu */}
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
                             size="large"
                             aria-label="open navigation menu"
@@ -132,7 +114,7 @@ export default function NavBar({ onSearchResults }) {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon />
+                            <MenuIcon/>
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -148,11 +130,11 @@ export default function NavBar({ onSearchResults }) {
                             }}
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
-                            sx={{ display: { xs: 'block', md: 'none' } }}
+                            sx={{display: {xs: 'block', md: 'none'}}}
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                                    <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to={page.path} style={{textDecoration: 'none', color: 'inherit'}}>
                                         {page.name}
                                     </Link>
                                 </MenuItem>
@@ -161,12 +143,12 @@ export default function NavBar({ onSearchResults }) {
                     </Box>
 
                     {/* Desktop Menu */}
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         {pages.map((page) => (
                             <Button
                                 key={page.name}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{my: 2, color: 'white', display: 'block'}}
                                 component={Link} // Use Link as component for Button
                                 to={page.path} // Set path for navigation
                             >
@@ -178,11 +160,11 @@ export default function NavBar({ onSearchResults }) {
                     {/* Search Bar */}
                     <Search>
                         <SearchIconWrapper>
-                            <SearchIcon />
+                            <SearchIcon/>
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
+                            inputProps={{'aria-label': 'search'}}
                             value={searchData}
                             onChange={(e) => setSearchData(e.target.value)}
                             onKeyDown={handleKeyDown}
