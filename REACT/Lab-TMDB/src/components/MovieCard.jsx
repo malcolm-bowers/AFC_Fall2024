@@ -1,8 +1,16 @@
 import * as React from 'react';
-import {Card, CardContent, CardMedia, Typography, CardActionArea} from '@mui/material';
+import {Card, CardContent, CardMedia, Typography, CardActionArea, Rating, Box} from '@mui/material';
 
 export default function MovieCard({movie}) {
+    const defaultImgPath = `src/assets/no-signal.webp`;
     const baseImgPath = `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+
+    const [imgSrc, setImgSrc] = React.useState(baseImgPath);
+
+    const handleImgError = () => {
+        setImgSrc(defaultImgPath)
+    }
+
     return (
         <Card sx={{
             maxWidth: "400px",
@@ -22,8 +30,9 @@ export default function MovieCard({movie}) {
             }}>
                 <CardMedia
                     component="img"
-                    image={baseImgPath}
+                    image={imgSrc}
                     alt={movie.title}
+                    onError={handleImgError}
                     sx={{
                         width: '100%',
                         height: '400px',
@@ -44,6 +53,7 @@ export default function MovieCard({movie}) {
                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                         {movie.overview}
                     </Typography>
+                    <Rating name="read-only" value={movie.vote_average/2} precision={0.1} readOnly />
                 </CardContent>
             </CardActionArea>
         </Card>
