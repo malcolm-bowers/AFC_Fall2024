@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "description": "Call mom",
+    "is_complete": true
+  },
+  {
+    "id": 2,
+    "description": "Go to movies",
+    "is_complete": false
+  },
+  {
+    "id": 3,
+    "description": "Wash my dog",
+    "is_complete": false
+  }
+]
