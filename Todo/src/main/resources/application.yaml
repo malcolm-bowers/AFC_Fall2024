@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: todo
+  datasource:
+    url: jdbc:postgresql://localhost:5435/postgres
+    username: todo_dev
+    password: todo_dev12
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

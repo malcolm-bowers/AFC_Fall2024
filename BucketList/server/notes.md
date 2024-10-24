@@ -26,7 +26,12 @@ DATA
 
 MUST BE CRUD functional
 
-
+Read
+1) Route - /api/items, GET method
+1.5) Get data from DB
+2) JSON
+3) Everything Back
+4) Array of objects
 
 Create
 1) Route - /api/items, POST method
@@ -35,6 +40,10 @@ Create
 2) JSON -> client
 3) Send back one thing
 4) One object - DATA, receipt from database
+
+When we send data from client to server
+We generally send as POST request
+Sent through the 'body'
 
 Delete
 1) Route - /api/items/<unique>, DELETE
