@@ -49,3 +49,6 @@ yarn*.log
 #### Database files ####
 .java-version
 /postgres-data/
+
+.env
+node_modules
