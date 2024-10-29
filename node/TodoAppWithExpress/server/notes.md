@@ -46,13 +46,13 @@ We generally send as POST request
 Sent through the 'body'
 
 Delete
-1) Route - /api/items/<unique>, DELETE
+1) Route - /api/todos/<unique>, DELETE
 2) JSON
 3) Send back one thing - what was deleted
 4) One object
 
 Update
-1) Route - /api/items/<unique>, PUT method
+1) Route - /api/todos/<unique>, PUT method
 1.5) What are we updating
 2) JSON
 3) Send back one thing - updated is_complete
